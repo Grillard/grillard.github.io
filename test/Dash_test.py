@@ -98,55 +98,6 @@ def update(clickData,active_cell):
     return get_query_table(new_id).to_dict('records'),get_plot(new_id)
 
 
-
-
-
-# @dash_app.callback(
-#     Output('Main_Table', 'data'),
-#     [Input('Main_Table', "page_current"),
-#      Input('Main_Table', "page_size"),
-#      Input('Main_Table', 'sort_by')])
-# def update_table(page_current, page_size, sort_by):
-#     # print(dash.callback_context.triggered)
-#     # print(dash.callback_context.inputs)
-#     # print('-----------------------------------')
-#     if len(sort_by):
-#         dff = main_df.sort_values(
-#             sort_by[0]['column_id'],
-#             ascending=sort_by[0]['direction'] == 'asc',
-#             inplace=False
-#         )
-#     else:
-#         dff = main_df
-#     r1=dff.iloc[
-#         page_current*page_size:(page_current+ 1)*page_size
-#     ].to_dict('records')
-#     return r1
-
-# @dash_app.callback(
-#     [Output('Main_Table', 'page_current'),
-#      Output('iot', 'figure'),
-#      Output('Second_Table', 'data')],
-#     [Input('Main_Table', 'active_cell'),
-#      Input('graph', 'clickData'),
-#      Input('Main_Table', 'data')])
-# def update_figure(active_cell,clickData,dff):
-#     print(dash.callback_context.triggered)
-#     print(dash.callback_context.inputs)
-#     print('-----------------------------------')
-#     if dash.callback_context.triggered[0]['value'] is None:
-#         raise PreventUpdate
-#     elif dash.callback_context.triggered[0]['prop_id']=='graph.clickData':
-#         new_id=dash.callback_context.triggered[0]['value']['points'][0]['id']
-#         page_current=int(dff.loc[dff['id']==new_id].index[0]/page_size)
-#     elif dash.callback_context.triggered[0]['prop_id']=='Main_Table.active_cell':
-#         new_id=dff[active_cell['row']]['id']
-#     r2=get_plot(new_id)
-#     r3=get_query_table(new_id).to_dict('records')
-#     return r2,r3
-
-
 if __name__ == '__main__':
-    # dash_app.run_server(debug=True)
     dash_app.run_server(host='0.0.0.0', port=8080, debug=True)
 
